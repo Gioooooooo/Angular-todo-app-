@@ -1,0 +1,103 @@
+<div class="selection">
+  <input type="text" placeholder="Task Name" [(ngModel)]="inputTodo">
+
+  <select name="difficulty" id="difficulty" [(ngModel)]="selectTodo">
+    <option selected [ngValue]="''" hidden>Selected</option>
+    <option value="Easy">Easy</option>
+    <option value="Medium">Medium</option>
+    <option value="Difficult">Difficult</option>
+  </select>
+
+  <button class="btn" (click)="addTodo()"> Add</button>
+</div>
+
+
+
+<div id="mainContainer">
+  <div>
+    <h1>To-do</h1>
+    <div class="todoContainer">
+      <ng-container *ngFor="let todo of todos; let idx = index">
+        <ng-container *ngIf="todo.toDo">
+
+          <div class="container">
+            <div class="title">
+
+            </div>
+            <div class="contentContainer">
+              <div class="content">
+                <div class="text">{{idx+1}}. {{todo.content}}</div>
+                <div class="buttons">
+                  <button class="button" (click)="moveToProgress(idx)">
+                    < </button>
+                      <button class="button" (click)="deleteToDo(idx)">X</button>
+                </div>
+              </div>
+              <span class="difficulty">{{todo.difficulty}}</span>
+
+            </div>
+          </div>
+        </ng-container>
+
+      </ng-container>
+    </div>
+  </div>
+
+  <div>
+    <h1>In progress</h1>
+
+    <div class="todoContainer">
+      <ng-container *ngFor="let todo of todos; let idx = index">
+        <ng-container *ngIf="todo.inProgress">
+
+          <div class="container">
+            <div class="title">
+
+            </div>
+            <div class="contentContainer">
+              <div class="content">
+                <div class="text">{{idx+1}}. {{todo.content}}</div>
+                <div class="buttons">
+                  <button class="button" (click)="moveToDo(idx)">
+                    < </button>
+                      <button class="button" (click)="moveToDone(idx)"> > </button>
+                </div>
+              </div>
+              <span class="difficulty">{{todo.difficulty}}</span>
+
+            </div>
+          </div>
+
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div>
+    <h1>Done</h1>
+    <div class="todoContainer">
+      <ng-container *ngFor="let todo of todos; let idx = index">
+        <ng-container *ngIf="todo.done">
+
+          <div class="container">
+            <div class="title">
+
+            </div>
+            <div class="contentContainer">
+              <div class="content">
+                <div class="text">{{idx+1}}. {{todo.content}}</div>
+                <div class="buttons">
+                  <button class="button" (click)="moveToProgress(idx)">
+                    < </button>
+                </div>
+              </div>
+              <span class="difficulty">{{todo.difficulty}}</span>
+
+            </div>
+          </div>
+
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
